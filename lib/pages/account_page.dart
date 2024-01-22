@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 Scaffold AccountPage() {
   return Scaffold(
     body: Container(
-      margin: EdgeInsets.only(top: 120.0),
+      margin: const EdgeInsets.only(top: 120.0),
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -19,12 +20,43 @@ Scaffold AccountPage() {
             inputField("Soyad"),
             inputField("Cep Telefonu"),
             inputField("T.C. Kimlik No"),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Kabul Etmek için tıkla"),
+                SwitchExample(),
+              ],
+            ),
             actionField(),
           ],
         ),
       ),
     ),
   );
+}
+
+class SwitchExample extends StatefulWidget {
+  const SwitchExample({super.key});
+
+  @override
+  State<SwitchExample> createState() => _SwitchExampleState();
+}
+
+class _SwitchExampleState extends State<SwitchExample> {
+  bool light = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      value: light,
+      activeColor: Colors.blue,
+      onChanged: (bool value) {
+        setState(() {
+          light = value;
+        });
+      },
+    );
+  }
 }
 
 Column actionField() => Column(children: [

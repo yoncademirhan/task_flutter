@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       // home: LoginPage(),
       // home: LoginPasswordPage(),
       // home: LoginPassActivePage(),
@@ -32,8 +32,8 @@ class MainApp extends StatelessWidget {
       // home: CreatePassActivePage(),
       // home: CreatePassAgainPage(),
       // home: CreatePassAgainActivePage(),
-      // home: AccountPage(),
-      home: AccountVerification(),
+      home: AccountPage(),
+      // home: AccountVerification(),
     );
   }
 }
