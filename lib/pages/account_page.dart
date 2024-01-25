@@ -1,38 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
+import 'package:task_flutter/pages/account_verfication.dart';
 
-Scaffold AccountPage() {
-  return Scaffold(
-    body: Container(
-      margin: const EdgeInsets.only(top: 120.0),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                header(),
-              ],
-            ),
-            inputField("Ad"),
-            inputField("Soyad"),
-            inputField("Cep Telefonu"),
-            inputField("T.C. Kimlik No"),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Kabul Etmek için tıkla"),
-                SwitchExample(),
-              ],
-            ),
-            actionField(),
-          ],
+class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        margin: const EdgeInsets.only(top: 120.0),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  header(),
+                ],
+              ),
+              inputField("Ad"),
+              inputField("Soyad"),
+              inputField("Cep Telefonu"),
+              inputField("T.C. Kimlik No"),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Kabul Etmek için tıkla"),
+                  SwitchExample(),
+                ],
+              ),
+              actionField(context),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class SwitchExample extends StatefulWidget {
@@ -59,14 +64,14 @@ class _SwitchExampleState extends State<SwitchExample> {
   }
 }
 
-Column actionField() => Column(children: [
+Column actionField(BuildContext context) => Column(children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: loginButton(),
+        child: loginButton(context),
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: afterButton(),
+        child: afterButton(context),
       ),
       const Text(""),
     ]);
@@ -79,15 +84,20 @@ Column header() => Column(
       ],
     );
 
-Widget loginButton() => Row(
+Widget loginButton(BuildContext context) => Row(
       children: [
         Expanded(
           child: ElevatedButton(
-            style: const ButtonStyle(
+            style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(
                     Color.fromARGB(255, 180, 180, 180)),
                 side: MaterialStatePropertyAll(BorderSide(color: Colors.grey))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AccountVerification()));
+            },
             child: const Padding(
               padding: EdgeInsets.all(16),
               child: Text(
@@ -99,14 +109,19 @@ Widget loginButton() => Row(
         ),
       ],
     );
-Widget afterButton() => Row(
+Widget afterButton(BuildContext context) => Row(
       children: [
         Expanded(
           child: OutlinedButton(
             style: const ButtonStyle(
                 side:
                     MaterialStatePropertyAll(BorderSide(color: Colors.black))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AccountVerification()));
+            },
             child: const Padding(
               padding: EdgeInsets.all(16),
               child: Text(
@@ -134,10 +149,10 @@ Widget subtitle(String subtitle) => Text(
     );
 
 Widget title(String title) => Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.only(bottom: 8),
       child: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: Color(0xFF2A2A2A),
           fontSize: 32,
           fontFamily: 'Raleway',
